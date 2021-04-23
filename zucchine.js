@@ -50,11 +50,23 @@ function calcWeight(array, weight) {
     return totalWeight;
 }
 
+//funzione che verifica se la lunghezza è maggiore di un TOT
+function longZucchiniSelection(lunghezza, num) {
+
+    if (lunghezza <= num) {
+        return false;
+    }
+    return true; 
+}
 
 (function () {
 
     var yourZucchini = document.getElementById('your-zucchini');
     var zucchiniWeight = document.getElementById("your-zucchini-weight");
+
+    var shortZucchiniList = document.getElementById("short-zucchini");
+    var longZucchiniList = document.getElementById("long-zucchini");
+
     /* 
     [Snack 1]
     Crea 10 oggetti che rappresentano una zucchina, indicandone per ognuno varietà,
@@ -87,15 +99,37 @@ function calcWeight(array, weight) {
     // STAMPA LE 10 ZUCCHINE IN HTML
     // SOMMARE IL PESO DI TUTTE LE ZUCCHINE
 
+    //due array per dividere le zucchine in base alla lunghezza
+    var shortZucchini = []; // <= 15cm
+    var longZucchini = []; // > 15cm
+
     for (var i = 0; i < allZucchini.length; i++) {
 
         var oneZucchini = allZucchini[i];
 
-        yourZucchini.innerHTML += "<li><strong>Zucchina " + (i + 1) + ": </strong><br> " + printThemAll(oneZucchini, 'weight', 'length').join(" * ") + "</li>";
+        for (var key in oneZucchini) {
+
+            if (key === "length") {
+
+                if (longZucchiniSelection(oneZucchini[key], 15)) {
+
+                    longZucchini.push(oneZucchini);
+                } else {
+                    shortZucchini.push(oneZucchini);
+                }
+
+            }
+        }
+
+        yourZucchini.innerHTML += "<li><strong>Zucchina " + (i + 1) + ": </strong><br> " + printThemAll(oneZucchini, 'weight', 'length').join(" - ") + "</li>";
     }
 
     zucchiniWeight.innerHTML += "<strong>" + calcWeight(allZucchini, 'weight') + "gr </strong>";
 
+    console.log(shortZucchini);
+    console.log(longZucchini);
+
+    
 
     
 
@@ -108,9 +142,9 @@ function calcWeight(array, weight) {
     Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited) 
     */
 
-    var lightZucchini = [];
-    var heavyZucchini = [];
+   
 
+    
 
 
 
