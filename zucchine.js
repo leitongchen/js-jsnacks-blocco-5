@@ -60,7 +60,7 @@ function longZucchiniSelection(lunghezza, num) {
 }
 
 function inputIsValid(userInput) {
-    if (isNaN(userInput)) {
+    if (isNaN(userInput) || userInput < 0 || userInput > 500) {
         return false;
     }
     return true; 
@@ -94,8 +94,8 @@ Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited)
 
 
     var howManyZucchini;
-    var longDivision = 17; 
-
+    var longDivision = 15; 
+    var maxQuantity = 500;
 
     for (var p=0; p<longDivisionHtml.length; p++){
         var selected = longDivisionHtml[p];
@@ -106,8 +106,11 @@ Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited)
 
     // Chiedo all'utente quante zucchine vuole 
     do {
+        howManyZucchini = parseInt(prompt("Quante zucchine vuoi comprare? Disponibilità " + maxQuantity))
+        if (!inputIsValid(howManyZucchini)) {
 
-        howManyZucchini = parseInt(prompt("Quante zucchine vuoi comprare?"))
+            alert("Non hai inserito una quantità valida")
+        }
 
     } while (!inputIsValid(howManyZucchini));
 
@@ -163,20 +166,20 @@ Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited)
 
 
     // ciclo per scrivere le zucchine in html LONG
-    for (var longz = 0; longz < shortZucchini.length; longz++) {
-        var zucchina = longZucchini[longz];
+    for (var longz = 0; longz < longZucchini.length; longz++) {
+        var oneZucchini = longZucchini[longz];
 
-        longZucchiniList.innerHTML += "<li><strong>Zucchina " + (longz + 1) + ": </strong><br> " + printThemAll(zucchina, 'weight', 'length').join(" - ") + "</li>";
+        longZucchiniList.innerHTML += "<li><strong>Zucchina " + (longz + 1) + ": </strong><br> " + printThemAll(oneZucchini, 'weight', 'length').join(" - ") + "</li>";
     }
 
     longZucchiniWeight.innerHTML += "<strong>" + calcWeight(longZucchini, 'weight') + "gr </strong>";
 
 
     // ciclo per scrivere le zucchine in html SHORT
-    for (var shortz = 0; shortz < longZucchini.length; shortz++) {
-        var zucchina = shortZucchini[shortz];
+    for (var shortz = 0; shortz < shortZucchini.length; shortz++) {
+        var oneZucchini = shortZucchini[shortz];
 
-        shortZucchiniList.innerHTML += "<li><strong>Zucchina " + (shortz + 1) + ": </strong><br> " + printThemAll(zucchina, 'weight', 'length').join(" - ") + "</li>";
+        shortZucchiniList.innerHTML += "<li><strong>Zucchina " + (shortz + 1) + ": </strong><br> " + printThemAll(oneZucchini, 'weight', 'length').join(" - ") + "</li>";
     }
 
     shortZucchiniWeight.innerHTML += "<strong>" + calcWeight(shortZucchini, 'weight') + "gr </strong>";
