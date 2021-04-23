@@ -59,6 +59,12 @@ function longZucchiniSelection(lunghezza, num) {
     return true;
 }
 
+function inputIsValid(userInput) {
+    if (isNaN(userInput)) {
+        return false;
+    }
+    return true; 
+}
 
 /* 
 [Snack 1]
@@ -83,6 +89,28 @@ Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited)
     var shortZucchiniWeight = document.getElementById("short-zucchini-weight");
     var longZucchiniWeight = document.getElementById("long-zucchini-weight");
 
+    var longDivisionHtml = document.querySelectorAll(".long-division");
+
+
+
+    var howManyZucchini;
+    var longDivision = 17; 
+
+
+    for (var p=0; p<longDivisionHtml.length; p++){
+        var selected = longDivisionHtml[p];
+
+        selected.innerHTML = longDivision;
+    }
+
+
+    // Chiedo all'utente quante zucchine vuole 
+    do {
+
+        howManyZucchini = parseInt(prompt("Quante zucchine vuoi comprare?"))
+
+    } while (!inputIsValid(howManyZucchini));
+
 
     // lunghezza zucchina varia tra 10cm e 23cm
     // peso zucchina varia tra 50gr e 450gr
@@ -94,7 +122,7 @@ Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited)
 
     // variety, weight e length vengono assegnati in automatico con un ciclo 
 
-    while (allZucchini.length < 10) {
+    while (allZucchini.length < howManyZucchini) {
 
         var newZucchini = {
             variety: setVariety(zucchiniVariety),
@@ -120,7 +148,7 @@ Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited)
         for (var key in oneZucchini) {
             if (key === "length") {
 
-                if (longZucchiniSelection(oneZucchini[key], 15)) {
+                if (longZucchiniSelection(oneZucchini[key], longDivision)) {
 
                     longZucchini.push(oneZucchini);
                 } else {
@@ -134,9 +162,9 @@ Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited)
     zucchiniWeight.innerHTML += "<strong>" + calcWeight(allZucchini, 'weight') + "gr </strong>";
 
 
-    // ciclo per scrivere le zucchine in html SHORT
+    // ciclo per scrivere le zucchine in html LONG
     for (var longz = 0; longz < shortZucchini.length; longz++) {
-        var zucchina = shortZucchini[longz];
+        var zucchina = longZucchini[longz];
 
         longZucchiniList.innerHTML += "<li><strong>Zucchina " + (longz + 1) + ": </strong><br> " + printThemAll(zucchina, 'weight', 'length').join(" - ") + "</li>";
     }
@@ -144,9 +172,9 @@ Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited)
     longZucchiniWeight.innerHTML += "<strong>" + calcWeight(longZucchini, 'weight') + "gr </strong>";
 
 
-    // ciclo per scrivere le zucchine in html LONG
+    // ciclo per scrivere le zucchine in html SHORT
     for (var shortz = 0; shortz < longZucchini.length; shortz++) {
-        var zucchina = longZucchini[shortz];
+        var zucchina = shortZucchini[shortz];
 
         shortZucchiniList.innerHTML += "<li><strong>Zucchina " + (shortz + 1) + ": </strong><br> " + printThemAll(zucchina, 'weight', 'length').join(" - ") + "</li>";
     }
