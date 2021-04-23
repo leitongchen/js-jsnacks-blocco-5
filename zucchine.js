@@ -1,38 +1,51 @@
 (function () {
-    
+
     /* 
     [Snack 1]
     Crea 10 oggetti che rappresentano una zucchina, indicandone per ognuno varietà,
     peso e lunghezza. Calcola quanto pesano tutte le zucchine.
     */
 
-    var zucchiniVariety = ['black beauty', 'caserta', 'golden egg', 'cocozella', 'dunja', 'round de nice', 'zephyr', 'gadzukes']; 
-    
-    var zucchini = [
+    // lunghezza zucchina varia tra 10cm e 23cm
+    // peso zucchina varia tra 50gr e 450gr
+
+
+    var zucchiniVariety = ['black beauty', 'caserta', 'golden egg', 'cocozella', 'dunja', 'round de nice', 'zephyr', 'gadzukes'];
+
+    var allZucchini = [
         {
             variety: '',
             weight: '',
             length: '',
         },
-    
-    
-    
     ];
 
-    console.log(randomNumGen(10, 23));
-    
+    // variety, weight e length vengono assegnati in automatico con un ciclo 
+
+
+    // funzione: genera in modo automatico la varietà da assegnare alla zucchina
+    function setVariety(array) {
+
+       return array[randomNumGen(1, array.length-1)]
+    }
+
+    console.log(setVariety(zucchiniVariety))
+
+
+    //console.log(randomNumGen(10, 23));
+
     function randomNumGen(min, max) {
         var minMax = max - min;
 
-        var randomNum = Math.floor(Math.random() * (minMax+1)) + min;
+        var randomNum = Math.floor(Math.random() * (minMax + 1)) + min;
 
-        return randomNum; 
+        return randomNum;
     }
-    
-    
-    
-    
-    
+
+
+
+
+
     /*
     [Snack 2]
     Crea 10 oggetti che rappresentano una zucchina.
