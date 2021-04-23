@@ -87,7 +87,7 @@ Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited)
     // lunghezza zucchina varia tra 10cm e 23cm
     // peso zucchina varia tra 50gr e 450gr
 
-    var zucchiniVariety = ['black beauty', 'caserta', 'golden egg', 'cocozella', 'dunja', 'round de nice', 'zephyr', 'gadzukes'];
+    var zucchiniVariety = ['black beauty', 'caserta', 'golden egg', 'cocozella', 'dunja', 'round de nice', 'zephyr', 'gadzukes', 'raven', 'fordhook', 'gourmet gold', 'magda', 'summer green tiger', 'italian ribed', 'bush baby', 'patio star'];
 
     // array in cui verranno inserite le 10 zucchine
     var allZucchini = [];
@@ -126,10 +126,8 @@ Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited)
                 } else {
                     shortZucchini.push(oneZucchini);
                 }
-
             }
         }
-
         yourZucchini.innerHTML += "<li><strong>Zucchina " + (i + 1) + ": </strong><br> " + printThemAll(oneZucchini, 'weight', 'length').join(" - ") + "</li>";
     }
 
@@ -156,6 +154,7 @@ Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited)
     shortZucchiniWeight.innerHTML += "<strong>" + calcWeight(shortZucchini, 'weight') + "gr </strong>";
 
     /*
+
     function controllaArray(arrayName, domElement, weight, length) {
 
         for (var i=0; i<arrayName.length; i++) {
