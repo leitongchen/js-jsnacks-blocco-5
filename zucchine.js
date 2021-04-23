@@ -12,16 +12,26 @@
 
     var zucchiniVariety = ['black beauty', 'caserta', 'golden egg', 'cocozella', 'dunja', 'round de nice', 'zephyr', 'gadzukes'];
 
-    var allZucchini = [
-        {
-            variety: '',
-            weight: '',
-            length: '',
-        },
-    ];
+    var allZucchini = [];
 
     // variety, weight e length vengono assegnati in automatico con un ciclo 
 
+    while (allZucchini.length < 10) {
+
+        var newZucchini = {
+            variety: setVariety(zucchiniVariety),
+            weight: randomNumGen(50, 450),
+            length: randomNumGen(10, 23),
+        }       
+
+        allZucchini.push(newZucchini);
+    }
+
+    console.log(allZucchini);
+
+
+
+    
 
     // funzione: genera in modo automatico la varietà da assegnare alla zucchina
     function setVariety(array) {
@@ -29,7 +39,7 @@
        return array[randomNumGen(1, array.length-1)]
     }
 
-    console.log(setVariety(zucchiniVariety))
+    //console.log(setVariety(zucchiniVariety))
 
 
     //console.log(randomNumGen(10, 23));
