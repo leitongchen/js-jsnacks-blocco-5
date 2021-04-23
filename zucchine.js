@@ -1,13 +1,11 @@
 function printThemAll(zucchini, gr, cm) {
 
     var singleZucchini = [];
-
     for (var key in zucchini) {
 
         if (key === gr) {
 
             singleZucchini.push(key + ": " + zucchini[key] + "gr");
-
         } else if (key === cm) {
 
             singleZucchini.push(key + ": " + zucchini[key] + "cm");
@@ -15,12 +13,10 @@ function printThemAll(zucchini, gr, cm) {
 
             singleZucchini.push(key + ": " + zucchini[key]);
         }
-
     }
     return singleZucchini;
     //return element + zucchini.variety + " - " + zucchini.weight + "gr - " + zucchini.length + "cm";
 }
-
 
 // funzione: genera in modo automatico la varietà da assegnare alla zucchina
 function setVariety(array) {
@@ -28,13 +24,30 @@ function setVariety(array) {
     return array[randomNumGen(1, array.length - 1)]
 }
 
-
 function randomNumGen(min, max) {
     var minMax = max - min;
 
     var randomNum = Math.floor(Math.random() * (minMax + 1)) + min;
 
     return randomNum;
+}
+
+// funzione che calcola/SOMMA il peso di tutte le zucchine dell'array
+function calcWeight(array, weight) {
+    var totalWeight = 0;
+
+    for (var z = 0; z < array.length; z++) {
+        var object = array[z]; 
+
+        for (var key in object) {
+
+            if (key === weight) {
+
+                totalWeight += parseInt(object[key]);
+            }
+        }
+    }
+    return totalWeight;
 }
 
 
@@ -74,31 +87,17 @@ function randomNumGen(min, max) {
     // STAMPA LE 10 ZUCCHINE IN HTML
     // SOMMARE IL PESO DI TUTTE LE ZUCCHINE
 
-    var allZucchiniWeight = 0;
     for (var i = 0; i < allZucchini.length; i++) {
 
         var oneZucchini = allZucchini[i];
 
-        for (var key in oneZucchini) {
-
-            if (key === "weight") {
-
-                allZucchiniWeight += parseInt(oneZucchini[key]);
-            }
-        }
         yourZucchini.innerHTML += "<li><strong>Zucchina " + (i + 1) + ": </strong><br> " + printThemAll(oneZucchini, 'weight', 'length').join(" * ") + "</li>";
     }
 
-    zucchiniWeight.innerHTML += "<strong>" + allZucchiniWeight + "gr </strong>";
-
- 
+    zucchiniWeight.innerHTML += "<strong>" + calcWeight(allZucchini, 'weight') + "gr </strong>";
 
 
-
-
-
-
-
+    
 
 
 
@@ -108,6 +107,11 @@ function randomNumGen(min, max) {
     Dividi in due array separati le zucchine che misurano meno o più di 15cm.
     Infine stampa separatamente quanto pesano i due gruppi di zucchine. (edited) 
     */
+
+    var lightZucchini = [];
+    var heavyZucchini = [];
+
+
 
 
 
